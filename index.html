@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --border-color: gray;
+        }
+
+        .groups-widget {
+            display: flex;
+            margin: auto;
+
+            font-family: var(--font);
+            border: 1px solid var(--border-color);
+        }
+
+        .departments {
+            display: flex;
+            margin: 0;
+            padding: 0;
+
+            flex: 1;
+            flex-flow: column;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+
+        .carousel {
+            display: flex;
+            width: 350px;
+
+            text-align: center;
+            flex: 2;
+            overflow-x: auto;
+        }
+
+        .department {
+            display: flex;
+            padding: 16px;
+
+            border-bottom: 1px solid var(--border-color);
+            flex: 1;
+            align-items: center;
+        }
+
+        .carousel-item {
+            margin: 0;
+            padding: 0 1em;
+            min-width: 200px;
+
+            flex: 1;
+            border-right: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+
+        .carousel-item:first-child {
+            border-left: 1px solid var(--border-color);
+        }
+    </style>
+    <script async defer src="script.js"></script>
+</head>
+
+<body>
+    <!--
+        How to use .groups-widget
+
+        Style arguments:
+            width: Width of the widget
+            height: Height of the widget
+            --font: Font of the widget
+            --border-color: Color of the borders of the widget
+
+        JavaScript:
+            Call `buildWidget` with data to display and an event
+            listener function. The event listener is called with
+            a CustomEvent object, which has a groupName and department attached under the detail property.
+    -->
+    <div class="groups-widget" style="width: 572px; height: 314px;">
+        <template id="department-template">
+            <li class="department">
+                <a href="#"></a>
+            </li>
+        </template>
+        <ul class="departments" id="departments"></ul>
+
+        <template id="group-template">
+            <div class="carousel-item">
+                <h2>
+                    Group name:
+                    <span class="group-name"></span>
+                </h2>
+                <p>
+                    Group tags:
+                    <span class="group-tags"></span>
+                </p>
+                <p>
+                    Member count:
+                    <span class="group-member-count"></span>
+                </p>
+            </div>
+        </template>
+        <section class="carousel" id="carousel">
+        </section>
+    </div>
+    <section class="popup">
+
+    </section>
+</body>
+
+</html>
