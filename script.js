@@ -118,8 +118,8 @@ function buildWidget(groups, onClick) {
 buildWidget(
   {
     "T and O": {
-      "Group A": { tags: ["#tag1", "#tag2"], memberCount: 10 },
-      "Group B": { tags: ["#tag1", "#tag2"], memberCount: 20 }
+      "RBC4Students": { tags: ["#interns", "#summer", "#early talent"], memberCount: 121 },
+      "DNA": { tags: ["#machine learning", "#big data"], memberCount: 20 }
     },
     "Capital Markets": {
       "Group C": { tags: ["#tag1", "#tag2"], memberCount: 30 }
@@ -127,7 +127,8 @@ buildWidget(
     Insurance: { "Group A": { tags: ["#tag1", "#tag2"], memberCount: 40 } },
     "Wealth Management": {
       "Group A": { tags: ["#tag1", "#tag2"], memberCount: 30 }
-    }
+    },
+    "I & TS": { "Group A": { tags: ["#tag1", "#tag2"], memberCount: 40 } }
   },
   event => console.log(event.detail.groupName, event.detail.department)
 );
