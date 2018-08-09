@@ -6,6 +6,8 @@ class DepartmentManger {
    */
   constructor(groups) {
     this.groups = groups;
+    /** @type {HTMLAnchorElement | null} */
+    this.active = null;
 
     this.setDepartments(Object.keys(groups));
     this.showGroups();
@@ -77,7 +79,7 @@ class DepartmentManger {
       ).textContent = memberCount.toString();
 
       groupElement
-        .querySelector(".carousel-item")
+        .querySelector(".my-carousel-item")
         .addEventListener("click", event => {
           event.currentTarget.dispatchEvent(
             new CustomEvent("group_click", {
@@ -92,6 +94,16 @@ class DepartmentManger {
 
       fragment.appendChild(groupElement);
     }
+
+    if (this.active != null) {
+      this.active.classList.remove("active");
+    }
+    /** @type {HTMLAnchorElement} */
+    const newActive = document.querySelector(
+      `.department a[href="#${selected}"]`
+    );
+    newActive.classList.add("active");
+    this.active = newActive;
 
     const carousel = document.getElementById("carousel");
 
@@ -118,8 +130,8 @@ function buildWidget(groups, onClick) {
 buildWidget(
   {
     "T and O": {
-      "RBC4Students": { tags: ["#interns", "#summer", "#early talent"], memberCount: 121 },
-      "DNA": { tags: ["#machine learning", "#big data"], memberCount: 20 }
+      "Group A": { tags: ["#tag1", "#tag2"], memberCount: 10 },
+      "Group B": { tags: ["#tag1", "#tag2"], memberCount: 20 }
     },
     "Capital Markets": {
       "Group C": { tags: ["#tag1", "#tag2"], memberCount: 30 }
@@ -128,7 +140,15 @@ buildWidget(
     "Wealth Management": {
       "Group A": { tags: ["#tag1", "#tag2"], memberCount: 30 }
     },
-    "I & TS": { "Group A": { tags: ["#tag1", "#tag2"], memberCount: 40 } }
+    "Personal & Commercial Banking": {
+      "Group A": { tags: ["#tag1", "#tag2"], memberCount: 30 }
+    },
+    "Investor & Treasury Services": {
+      "Group A": { tags: ["#tag1", "#tag2"], memberCount: 30 }
+    },
+    Finance: {
+      "Group A": { tags: ["#tag1", "#tag2"], memberCount: 30 }
+    }
   },
   event => console.log(event.detail.groupName, event.detail.department)
 );
